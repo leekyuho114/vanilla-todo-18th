@@ -10,21 +10,30 @@
     <div class="container">
       <div class="header">
         <div class="logo">TODO-list</div>
-        <div class="description">투두리스트를 작성하고 오늘 하루를 기록해요
+        <div class="detail">
+          <div>투두리스트를 작성하고 오늘 하루를 기록해요</div>
+          <div id="clock-js">00:00</div>
         </div>
       </div>
       <div class="todoList">
         <!-- 임시 작성 -->
-        <div class="todoCard">
-          <div class="todoElem">징니랑 운동하기</div>
+        <div class="todoInput">
+          <input id="addTodo" type="text" placeholder=" Add TODO">
+          <button id="plusButton">+</button>
         </div>
         <div class="todoCard">
-          <div class="todoElem">징니랑 밥먹기</div>
+          <div class="todoElem">운동하기</div>
+          <input type="checkbox">
         </div>
         <div class="todoCard">
-          <div class="todoElem">징니랑 공부하기</div>
+          <div class="todoElem">밥먹기</div>
+          <input type="checkbox">
         </div>
-        <div class="plusButton">+</div><!-- 미구현 -->
+        <div class="todoCard">
+          <div class="todoElem">공부하기</div>
+          <input type="checkbox">
+        </div>
+        <!-- 미구현 -->
       </div>
     </div>
   </body>
