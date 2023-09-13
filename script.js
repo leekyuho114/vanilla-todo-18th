@@ -8,7 +8,7 @@ function addTodo(){
         alert("TODO를 입력하세요.");
         return;
     }
-    else if(todoText.length > 80){
+    else if(todoText.length > 60){
         alert("80자 이하로 입력해주세요.");
         return;
     }
@@ -37,12 +37,12 @@ function addTodo(){
     addTodoInput.value="";
 }
 function handleClick(event){//click 핸들러
-    const clickedElement = event.target;
+    const clickedElement = event.target; // click event element
     if(clickedElement.classList.contains("todoDelete")){
         deleteTodo(clickedElement);
     }
-    else if(clickedElement.classList.contains("checkbox")){
-        //체크박스 시 밑으로 내리기(local로 처리하든 정렬해야될듯)
+    else if(clickedElement.type==="checkbox"){
+        handleCheckBoxClick(clickedElement);
     }
 }
 function deleteTodo(deleteButton){//Todo 지움
@@ -50,6 +50,25 @@ function deleteTodo(deleteButton){//Todo 지움
     const todoCards = document.querySelector(".todoCards");
     todoCards.removeChild(todoCard);
 }
+function handleCheckBoxClick(checkedElement){
+    const todoCard = checkedElement.parentElement;
+    const todoElem = todoCard.querySelector(".todoElem");
+    if(checkedElement.checked){ // checked opacity는 css
+        todoCard.classList.add("checked");
+        todoCard.style.order = "2"; //체크된 항목 아래로
+        todoElem.style.textDecoration= "line-through"; //취소선 긋기
+    }
+    else{
+        todoCard.classList.remove("checked");
+        todoCard.style.order = "1"; //체크되지 않은 항목 위로
+        todoElem.style.textDecoration= "none";
+    }
+    const todoList=Array.from(todoCards.children); // list를 통해 sort, checked와 아닌거 구분
+    todoList.sort((a,b)=> a.style.order - b.style.order);
+    todoList.forEach((todo)=>{
+        todoCards.appendChild(todo);
+    })
+};
 //plusButton과 add Todo enter 클릭 이벤트 핸들러
 plusButton.addEventListener('click',addTodo);
 addTodoInput.addEventListener("keyup", (e)=>{

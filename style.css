@@ -49,7 +49,7 @@ input[type=text]{/*input 태그 따로 설정*/
     color: #ECECEC;
     border: solid 2px #ECECEC;
     border-radius: 6px;
-    width: 410px;
+    width: 400px;
 }
 #plusButton{
     background-color: black;
@@ -57,7 +57,7 @@ input[type=text]{/*input 태그 따로 설정*/
     border: solid 2px #ECECEC;
     border-radius: 6px;
     width: 35px;
-    margin-left: 4px;
+    margin-left: 5px;
     transition : border 0.3s;
 }
 #plusButton:hover{
@@ -66,19 +66,28 @@ input[type=text]{/*input 태그 따로 설정*/
 .todoCard{
     background-color: #ECECEC;
     color : black;
-    display:flex; /*todoElem 세로축 가운데 정렬*/
+    display:flex; 
+    /*todoElem 세로축 가운데 정렬*/
     align-items:center;
     justify-content:space-between;
     /* item 사이 간격 균일하게 */
     height: 100px;
-    margin : 5px 0;
+    margin : 10px 0;
     border-radius: 8px;
 }
+.todoCard.checked{
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+.todoCard.checked:hover{ /*마우스 올렸을 때 살짝 밝게*/
+    opacity: 0.6;
+}
 .todoElem{
-    padding-left:30px;
+    flex:1; /*여백 다 채우게끔*/
+    margin-left:30px;
 }
 input[type=checkbox]{
-    margin-right: -300px;
+    margin-left: 20px;
 }
 .todoDelete{
     border: none;
