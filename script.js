@@ -1,12 +1,66 @@
-const addTodo = document.getElementById('addTodo');
-const plusButton = document.getElementById('plusButton');
+const addTodoInput = document.getElementById('addTodo'); //add todo input
+const plusButton = document.getElementById('plusButton'); //plusbutton press
+const clockTarget = document.getElementById("clock-js"); //clock
 
-plusButton.addEventListener('click',()=>{
-    console.log("clicked");
+function addTodo(){
+    const todoText = addTodoInput.value.trim();
+    if(todoText==""){
+        alert("TODO를 입력하세요.");
+        return;
+    }
+    else if(todoText.length > 80){
+        alert("80자 이하로 입력해주세요.");
+        return;
+    }
+    //todo card 추가
+    const todoCards= document.querySelector(".todoCards");
+    const todoCard = document.createElement("div");
+    todoCard.classList.add("todoCard");
+
+    const todoElem = document.createElement("div");
+    todoElem.classList.add("todoElem");
+    todoElem.textContent = todoText;
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+
+    const todoDelete = document.createElement("button");
+    todoDelete.classList.add("todoDelete");
+    todoDelete.textContent = "X";
+
+    todoCard.appendChild(todoElem);
+    todoCard.appendChild(checkbox);
+    todoCard.appendChild(todoDelete);
+
+    todoCards.appendChild(todoCard);
+
+    addTodoInput.value="";
+}
+function handleClick(event){//click 핸들러
+    const clickedElement = event.target;
+    if(clickedElement.classList.contains("todoDelete")){
+        deleteTodo(clickedElement);
+    }
+    else if(clickedElement.classList.contains("checkbox")){
+        //체크박스 시 밑으로 내리기(local로 처리하든 정렬해야될듯)
+    }
+}
+function deleteTodo(deleteButton){//Todo 지움
+    const todoCard = deleteButton.parentElement;
+    const todoCards = document.querySelector(".todoCards");
+    todoCards.removeChild(todoCard);
+}
+//plusButton과 add Todo enter 클릭 이벤트 핸들러
+plusButton.addEventListener('click',addTodo);
+addTodoInput.addEventListener("keyup", (e)=>{
+    if(e.key === "Enter"){
+        addTodo();
+    }
 })
-
+//deleteButton 이벤트핸들러
+const todoCards = document.querySelector(".todoCards");
+todoCards.addEventListener("click",handleClick);
 // clock 출력
-const clockTarget = document.getElementById("clock-js");
 function clock(){
     const date = new Date();
     const month = date.getMonth();

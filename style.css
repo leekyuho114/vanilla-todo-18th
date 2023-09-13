@@ -68,7 +68,8 @@ input[type=text]{/*input 태그 따로 설정*/
     color : black;
     display:flex; /*todoElem 세로축 가운데 정렬*/
     align-items:center;
-    justify-content:space-between;/*item 사이 간격 균일하게*/
+    justify-content:space-between;
+    /* item 사이 간격 균일하게 */
     height: 100px;
     margin : 5px 0;
     border-radius: 8px;
@@ -77,5 +78,16 @@ input[type=text]{/*input 태그 따로 설정*/
     padding-left:30px;
 }
 input[type=checkbox]{
-    margin-right: 25px;
+    margin-right: -300px;
+}
+.todoDelete{
+    border: none;
+    margin-bottom: 80px;
+    margin-right: 5px;
+    font-size: 7px;
+    border-radius: 2px;
+    transition : background-color 0.3s;
+}
+.todoDelete:hover{
+    background-color: #b1b1b1;
 }
